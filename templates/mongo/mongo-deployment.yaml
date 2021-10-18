@@ -12,7 +12,7 @@ spec:
   template:
     metadata:
       labels:
-        service: {{ .Release.Name }}-mongo
+        k8s-app: {{ .Release.Name }}-mongo
     spec:
       containers:
       - name: mongodb
