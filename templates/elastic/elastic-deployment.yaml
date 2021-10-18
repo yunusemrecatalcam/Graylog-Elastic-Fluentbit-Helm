@@ -24,15 +24,22 @@ spec:
                 values:
                 - es-deploy
             topologyKey: "kubernetes.io/hostname"
-      initContainers:
-      - name: init-sysctl
-        image: busybox:1.30
-        command: ["sysctl", "-w", "vm.max_map_count=262144"]
-        securityContext:
-          privileged: true
+      #initContainers:
+      #- name: init-sysctl
+      #  image: busybox:1.30
+      #  command: ["sysctl", "-w", "vm.max_map_count=262144"]
+      #  securityContext:
+      #    privileged: true
       containers:
       - name: es
-        image: elasticsearch:6.8.19
+        image: docker.elastic.co/elasticsearch/elasticsearch-oss:7.10.2
+        env:
+        - name: http.host
+          value: 0.0.0.0
+        - name: discovery.type
+            value: single-node
+        - name: ES_JAVA_OPTS
+            value: "-Xms512m -Xmx512m"
         readinessProbe:
           tcpSocket:
             port: 9200
