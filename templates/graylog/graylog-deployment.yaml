@@ -36,9 +36,9 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: graylog3
+  name: {{ .Release.Name }}-graylog
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     k8s-app: {{ .Release.Name }}-graylog
   ports:
