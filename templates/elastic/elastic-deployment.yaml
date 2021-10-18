@@ -32,7 +32,7 @@ spec:
           privileged: true
       containers:
       - name: es
-        image: elasticsearch:7.14.2
+        image: elasticsearch:6.8.19
         readinessProbe:
           tcpSocket:
             port: 9200
