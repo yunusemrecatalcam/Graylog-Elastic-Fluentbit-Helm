@@ -10,6 +10,9 @@ spec:
     metadata:
       labels:
         k8s-app: {{ .Release.Name }}-graylog
+    selector:
+      matchLabels:
+        k8s-app: {{ .Release.Name }}-graylog
     spec:
       containers:
       - name: graylog4
