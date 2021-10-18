@@ -8,7 +8,7 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      k8s-app: { { .Release.Name } }-mongo
+      k8s-app: {{ .Release.Name }}-mongo
   template:
     metadata:
       labels:
