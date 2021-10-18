@@ -8,7 +8,7 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      k8s-app: { { .Release.Name } }-graylog
+      k8s-app: {{ .Release.Name }}-graylog
   template:
     metadata:
       labels:
