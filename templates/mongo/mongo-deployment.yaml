@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: {{ .Release.Name }}-mongo
   labels:
-    service: {{ .Release.Name }}-mongo
+    k8s-app: {{ .Release.Name }}-mongo
 spec:
   replicas: 1
   selector:
