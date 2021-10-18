@@ -4,7 +4,7 @@ metadata:
   name: mongo
 spec:
   selector:
-    k8s-app: { { .Release.Name } }-mongo
+    k8s-app: {{ .Release.Name }}-mongo
   ports:
   - name: "27017"
     port: 27017
