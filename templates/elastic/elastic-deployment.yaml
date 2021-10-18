@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-elastic
+  labels:
+    k8s-app: {{ .Release.Name }}-elastic
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      k8s-app: {{ .Release.Name }}-elastic
+  template:
+    metadata:
+      labels:
+        k8s-app: {{ .Release.Name }}-elastic
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: service
+                operator: In
+                values:
+                - es-deploy
+            topologyKey: "kubernetes.io/hostname"
+      initContainers:
+      - name: init-sysctl
+        image: busybox:1.30
+        command: ["sysctl", "-w", "vm.max_map_count=262144"]
+        securityContext:
+          privileged: true
+      containers:
+      - name: es
+        image: elasticsearch:7.14.2
+        readinessProbe:
+          tcpSocket:
+            port: 9200
+          initialDelaySeconds: 20
+          periodSeconds: 30
+        ports:
+        - containerPort: 9200
+        - containerPort: 9300

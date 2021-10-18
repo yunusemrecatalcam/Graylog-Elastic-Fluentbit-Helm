@@ -25,7 +25,7 @@ spec:
         - name: GRAYLOG_HTTP_EXTERNAL_URI
           value: http://your_ip_address:30003/
         - name: GRAYLOG_ELASTICSEARCH_HOSTS
-          value: http://es6:9200
+          value: http://es:9200
         - name: GRAYLOG_MONGODB_URI
           value: mongodb://mongo:27017/graylog
         ports:
