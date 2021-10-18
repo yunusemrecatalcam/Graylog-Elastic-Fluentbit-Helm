@@ -37,9 +37,9 @@ spec:
         - name: http.host
           value: 0.0.0.0
         - name: discovery.type
-            value: single-node
+          value: single-node
         - name: ES_JAVA_OPTS
-            value: "-Xms512m -Xmx512m"
+          value: "-Xms512m -Xmx512m"
         readinessProbe:
           tcpSocket:
             port: 9200
