@@ -2,9 +2,10 @@ export GRAYLOG_ADDR="65.21.184.23:9000"
 
 export INPUT=$(curl -s -u admin:admin -H 'Content-Type: application/json' -X GET 'http://65.21.184.23:9000/api/system/inputs' | jq '.inputs | .[0] |
 .id')
+export INPUT=${INPUT%?}
+export INPUT="${INPUT#?}"
 
-echo "http://65.21.184.23:9000/api/system/inputs/{$INPUT}/extractors"
-curl -u admin:admin -H 'Content-Type: application/json' -H 'X-Requested-By: cli' -X POST "http://65.21.184.23:9000/api/system/inputs/{$INPUT}/extractors" -d '{
+curl -u admin:admin -H 'Content-Type: application/json' -H 'X-Requested-By: cli' -X POST "http://65.21.184.23:9000/api/system/inputs/$INPUT/extractors" -d '{
   "title":"FluentD",
   "extractor_type":"json",
   "converters":{},
