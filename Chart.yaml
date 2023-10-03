@@ -1,6 +1,6 @@
 apiVersion: v2
 name: Graylog-Helm
-description: Graylog Stack Helm chart for Kubernetes
+description: Graylog-Elastic-Fluentbit stack for Kubernetes, written by yechops.io
 type: application
 version: 1.0
 appVersion: 4.2.0
