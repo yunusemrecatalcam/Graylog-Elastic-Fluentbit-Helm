@@ -3,15 +3,13 @@ kind: Service
 metadata:
   name: es
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     k8s-app: {{ .Release.Name }}-elastic
   ports:
   - name: "9200"
     port: 9200
     targetPort: 9200
-    nodePort: 30001
   - name: "9300"
     port: 9300
     targetPort: 9300
-    nodePort: 30002
