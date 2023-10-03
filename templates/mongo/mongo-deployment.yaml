@@ -16,8 +16,15 @@ spec:
     spec:
       containers:
       - name: mongodb
-        image: mongo:3
+        image: mongo:5.0
         ports:
         - containerPort: 27017
+        volumeMounts:
+          - name: mongo-persistent-storage
+            mountPath: /data/db
+      volumes:
+        - name: mongo-persistent-storage
+          persistentVolumeClaim:
+            claimName: graylog-mongo-pvc
 
 
